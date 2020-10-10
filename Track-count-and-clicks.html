@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="../React Events/js/react.development.js"></script>
+    <script src="../React Events/js/react-dom.development.js"></script>
+    <script src="../React Events/js/babel.js"></script>
+
+    <script type="text/babel">
+      const rootHandle = document.getElementById("root");
+      const { useState } = React;
+      function TrackCount(props) {
+        const [count, setCount] = useState(0);
+        const [click, setClick] = useState(0);
+        const upCounter = () => {
+          setClick(count + 1);
+          setCount(click + 1);
+        };
+        const downCounter = () => {
+          setClick(click + 1);
+          setCount(count - 1);
+        };
+        return (
+          <div>
+            <h2>
+              Count - {count}, Clicks - {click}
+            </h2>
+            <button onClick={upCounter}>up</button>
+            <button onClick={downCounter}>down</button>
+          </div>
+        );
+      }
+      ReactDOM.render(<TrackCount />, rootHandle);
+    </script>
+  </body>
+</html>

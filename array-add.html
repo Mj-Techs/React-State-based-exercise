@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="../React Events/js/react.development.js"></script>
+    <script src="../React Events/js/react-dom.development.js"></script>
+    <script src="../React Events/js/babel.js"></script>
+
+    <script type="text/babel">
+      const rootHandle = document.getElementById("root");
+      /*
+        1.create a component called as RandomNumbers
+        2.Maintain state variable called as numbers
+        3.Display a count of numbers
+        4.Display a button on the screen called as 'Add'
+        5.When the user clicks the button,generate a random number  and add it to state
+     */
+      const { useState } = React;
+      function RandomNumbers(props) {
+        const [numbers, setNumbers] = useState([]);
+        // callback function shoud be pure function so these function can't modify numbers array directly inside this function.
+        const addNumber = () => {
+          // deep copy of array - slice(0),concat,spread
+
+          //   const addnumbers = numbers.slice(0);
+          //   addnumbers.push(random);
+          const random = Math.round(Math.random() * 100);
+          //   const newnumbers = numbers.concat(random);
+
+          const newArray = [...numbers, random]; //spread operator
+        };
+        return (
+          <div>
+            <h1>Numbers Count - {numbers.length}</h1>
+            <button onClick={addNumber}>Add</button>
+          </div>
+        );
+      }
+      ReactDOM.render(<RandomNumbers />, rootHandle);
+    </script>
+  </body>
+</html>

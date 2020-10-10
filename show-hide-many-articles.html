@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="../React Events/js/react.development.js"></script>
+    <script src="../React Events/js/react-dom.development.js"></script>
+    <script src="../React Events/js/babel.js"></script>
+
+    <script type="text/babel">
+      const rootHandle = document.getElementById("root");
+      const { useState } = React;
+
+      function ArticleHandler(props) {
+        const { post, title } = props;
+        const [change, setChange] = useState(true);
+        const changeStatus = () => {
+          setChange(!change);
+        };
+        return (
+          <div>
+            {change && <p>{post}</p>}
+            <button onClick={changeStatus}>
+              {change ? "Hide" : "Show"} - {title}
+            </button>
+          </div>
+        );
+      }
+      function App(props) {
+        const articles = [
+          {
+            id: 1,
+            post:
+              "React (also known as React.js or ReactJS) is an open-source, front end, JavaScript library[3] for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies.[4][5][6] React can be used as a base in the development of single-page or mobile applications. ",
+            title: "ReactJs Article",
+          },
+          {
+            id: 2,
+            post:
+              "JavaScript (/ˈdʒɑːvəˌskrɪpt/),[6] often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.[7] JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.",
+            title: "Javascript Article",
+          },
+          {
+            id: 3,
+            post:
+              "Node.js is an open-source, cross-platform, back-end, JavaScript runtime environment that executes JavaScript code outside a web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user .",
+            title: "NodeJs Article",
+          },
+        ];
+        return (
+          <div>
+            {articles.map((ele) => {
+              return <ArticleHandler {...ele} key={ele.id} />;
+            })}
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, rootHandle);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="../React Events/js/react.development.js"></script>
+    <script src="../React Events/js/react-dom.development.js"></script>
+    <script src="../React Events/js/babel.js"></script>
+
+    <script type="text/babel">
+      const rootHandle = document.getElementById("root");
+      const { useState } = React;
+      function FontController(props) {
+        const str = "dct academy";
+        const [fontsize, setFont] = useState(50);
+        const fontStyle = { fontSize: fontsize + "px", display: "inline" };
+        const decrease = () => {
+          const newFont = fontsize - 5;
+          if (newFont < 20) {
+            alert("sorrry!! your font-size will be less than 20px");
+          } else {
+            setFont(newFont);
+          }
+        };
+
+        const increase = () => {
+          setFont(fontsize + 5);
+        };
+
+        return (
+          <div>
+            <button onClick={decrease}> - </button>
+            <h1 style={fontStyle}>{str}</h1>
+            <button onClick={increase}>+</button>
+          </div>
+        );
+      }
+      ReactDOM.render(<FontController />, rootHandle);
+    </script>
+  </body>
+</html>
